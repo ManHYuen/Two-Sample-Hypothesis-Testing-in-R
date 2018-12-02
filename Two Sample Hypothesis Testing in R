@@ -1,0 +1,818 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 107,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<table>\n",
+       "<thead><tr><th scope=col>Page</th><th scope=col>Time</th></tr></thead>\n",
+       "<tbody>\n",
+       "\t<tr><td>Page A</td><td>0.21  </td></tr>\n",
+       "\t<tr><td>Page B</td><td>2.53  </td></tr>\n",
+       "\t<tr><td>Page A</td><td>0.35  </td></tr>\n",
+       "\t<tr><td>Page B</td><td>0.71  </td></tr>\n",
+       "\t<tr><td>Page A</td><td>0.67  </td></tr>\n",
+       "\t<tr><td>Page B</td><td>0.85  </td></tr>\n",
+       "\t<tr><td>Page A</td><td>2.11  </td></tr>\n",
+       "\t<tr><td>Page B</td><td>2.46  </td></tr>\n",
+       "\t<tr><td>Page A</td><td>1.32  </td></tr>\n",
+       "\t<tr><td>Page B</td><td>1.49  </td></tr>\n",
+       "\t<tr><td>Page A</td><td>0.68  </td></tr>\n",
+       "\t<tr><td>Page B</td><td>0.75  </td></tr>\n",
+       "\t<tr><td>Page A</td><td>3.21  </td></tr>\n",
+       "\t<tr><td>Page B</td><td>3.33  </td></tr>\n",
+       "\t<tr><td>Page A</td><td>1.47  </td></tr>\n",
+       "\t<tr><td>Page B</td><td>1.87  </td></tr>\n",
+       "\t<tr><td>Page A</td><td>0.95  </td></tr>\n",
+       "\t<tr><td>Page B</td><td>1.26  </td></tr>\n",
+       "\t<tr><td>Page A</td><td>0.45  </td></tr>\n",
+       "\t<tr><td>Page B</td><td>0.48  </td></tr>\n",
+       "\t<tr><td>Page A</td><td>1.18  </td></tr>\n",
+       "\t<tr><td>Page B</td><td>1.47  </td></tr>\n",
+       "\t<tr><td>Page A</td><td>3.42  </td></tr>\n",
+       "\t<tr><td>Page B</td><td>3.57  </td></tr>\n",
+       "\t<tr><td>Page A</td><td>1.97  </td></tr>\n",
+       "\t<tr><td>Page B</td><td>2.23  </td></tr>\n",
+       "\t<tr><td>Page A</td><td>0.39  </td></tr>\n",
+       "\t<tr><td>Page B</td><td>0.43  </td></tr>\n",
+       "\t<tr><td>Page A</td><td>0.65  </td></tr>\n",
+       "\t<tr><td>Page B</td><td>0.87  </td></tr>\n",
+       "\t<tr><td>Page A</td><td>1.73  </td></tr>\n",
+       "\t<tr><td>Page A</td><td>0.74  </td></tr>\n",
+       "\t<tr><td>Page A</td><td>0.86  </td></tr>\n",
+       "\t<tr><td>Page A</td><td>1.18  </td></tr>\n",
+       "\t<tr><td>Page A</td><td>2.06  </td></tr>\n",
+       "\t<tr><td>Page A</td><td>0.93  </td></tr>\n",
+       "</tbody>\n",
+       "</table>\n"
+      ],
+      "text/latex": [
+       "\\begin{tabular}{r|ll}\n",
+       " Page & Time\\\\\n",
+       "\\hline\n",
+       "\t Page A & 0.21  \\\\\n",
+       "\t Page B & 2.53  \\\\\n",
+       "\t Page A & 0.35  \\\\\n",
+       "\t Page B & 0.71  \\\\\n",
+       "\t Page A & 0.67  \\\\\n",
+       "\t Page B & 0.85  \\\\\n",
+       "\t Page A & 2.11  \\\\\n",
+       "\t Page B & 2.46  \\\\\n",
+       "\t Page A & 1.32  \\\\\n",
+       "\t Page B & 1.49  \\\\\n",
+       "\t Page A & 0.68  \\\\\n",
+       "\t Page B & 0.75  \\\\\n",
+       "\t Page A & 3.21  \\\\\n",
+       "\t Page B & 3.33  \\\\\n",
+       "\t Page A & 1.47  \\\\\n",
+       "\t Page B & 1.87  \\\\\n",
+       "\t Page A & 0.95  \\\\\n",
+       "\t Page B & 1.26  \\\\\n",
+       "\t Page A & 0.45  \\\\\n",
+       "\t Page B & 0.48  \\\\\n",
+       "\t Page A & 1.18  \\\\\n",
+       "\t Page B & 1.47  \\\\\n",
+       "\t Page A & 3.42  \\\\\n",
+       "\t Page B & 3.57  \\\\\n",
+       "\t Page A & 1.97  \\\\\n",
+       "\t Page B & 2.23  \\\\\n",
+       "\t Page A & 0.39  \\\\\n",
+       "\t Page B & 0.43  \\\\\n",
+       "\t Page A & 0.65  \\\\\n",
+       "\t Page B & 0.87  \\\\\n",
+       "\t Page A & 1.73  \\\\\n",
+       "\t Page A & 0.74  \\\\\n",
+       "\t Page A & 0.86  \\\\\n",
+       "\t Page A & 1.18  \\\\\n",
+       "\t Page A & 2.06  \\\\\n",
+       "\t Page A & 0.93  \\\\\n",
+       "\\end{tabular}\n"
+      ],
+      "text/markdown": [
+       "\n",
+       "Page | Time | \n",
+       "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n",
+       "| Page A | 0.21   | \n",
+       "| Page B | 2.53   | \n",
+       "| Page A | 0.35   | \n",
+       "| Page B | 0.71   | \n",
+       "| Page A | 0.67   | \n",
+       "| Page B | 0.85   | \n",
+       "| Page A | 2.11   | \n",
+       "| Page B | 2.46   | \n",
+       "| Page A | 1.32   | \n",
+       "| Page B | 1.49   | \n",
+       "| Page A | 0.68   | \n",
+       "| Page B | 0.75   | \n",
+       "| Page A | 3.21   | \n",
+       "| Page B | 3.33   | \n",
+       "| Page A | 1.47   | \n",
+       "| Page B | 1.87   | \n",
+       "| Page A | 0.95   | \n",
+       "| Page B | 1.26   | \n",
+       "| Page A | 0.45   | \n",
+       "| Page B | 0.48   | \n",
+       "| Page A | 1.18   | \n",
+       "| Page B | 1.47   | \n",
+       "| Page A | 3.42   | \n",
+       "| Page B | 3.57   | \n",
+       "| Page A | 1.97   | \n",
+       "| Page B | 2.23   | \n",
+       "| Page A | 0.39   | \n",
+       "| Page B | 0.43   | \n",
+       "| Page A | 0.65   | \n",
+       "| Page B | 0.87   | \n",
+       "| Page A | 1.73   | \n",
+       "| Page A | 0.74   | \n",
+       "| Page A | 0.86   | \n",
+       "| Page A | 1.18   | \n",
+       "| Page A | 2.06   | \n",
+       "| Page A | 0.93   | \n",
+       "\n",
+       "\n"
+      ],
+      "text/plain": [
+       "   Page   Time\n",
+       "1  Page A 0.21\n",
+       "2  Page B 2.53\n",
+       "3  Page A 0.35\n",
+       "4  Page B 0.71\n",
+       "5  Page A 0.67\n",
+       "6  Page B 0.85\n",
+       "7  Page A 2.11\n",
+       "8  Page B 2.46\n",
+       "9  Page A 1.32\n",
+       "10 Page B 1.49\n",
+       "11 Page A 0.68\n",
+       "12 Page B 0.75\n",
+       "13 Page A 3.21\n",
+       "14 Page B 3.33\n",
+       "15 Page A 1.47\n",
+       "16 Page B 1.87\n",
+       "17 Page A 0.95\n",
+       "18 Page B 1.26\n",
+       "19 Page A 0.45\n",
+       "20 Page B 0.48\n",
+       "21 Page A 1.18\n",
+       "22 Page B 1.47\n",
+       "23 Page A 3.42\n",
+       "24 Page B 3.57\n",
+       "25 Page A 1.97\n",
+       "26 Page B 2.23\n",
+       "27 Page A 0.39\n",
+       "28 Page B 0.43\n",
+       "29 Page A 0.65\n",
+       "30 Page B 0.87\n",
+       "31 Page A 1.73\n",
+       "32 Page A 0.74\n",
+       "33 Page A 0.86\n",
+       "34 Page A 1.18\n",
+       "35 Page A 2.06\n",
+       "36 Page A 0.93"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "# load the csv file\n",
+    "session_time <- read.csv(\"/Users/Man/Downloads/web_page_data.csv\")\n",
+    "# H0 : The sample mean of Page A and B is the same\n",
+    "# H1 : not H0\n",
+    "session_time"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<table>\n",
+       "<thead><tr><th></th><th scope=col>Page</th><th scope=col>Time</th></tr></thead>\n",
+       "<tbody>\n",
+       "\t<tr><th scope=row>1</th><td>Page A</td><td>0.21  </td></tr>\n",
+       "\t<tr><th scope=row>3</th><td>Page A</td><td>0.35  </td></tr>\n",
+       "\t<tr><th scope=row>5</th><td>Page A</td><td>0.67  </td></tr>\n",
+       "\t<tr><th scope=row>7</th><td>Page A</td><td>2.11  </td></tr>\n",
+       "\t<tr><th scope=row>9</th><td>Page A</td><td>1.32  </td></tr>\n",
+       "\t<tr><th scope=row>11</th><td>Page A</td><td>0.68  </td></tr>\n",
+       "\t<tr><th scope=row>13</th><td>Page A</td><td>3.21  </td></tr>\n",
+       "\t<tr><th scope=row>15</th><td>Page A</td><td>1.47  </td></tr>\n",
+       "\t<tr><th scope=row>17</th><td>Page A</td><td>0.95  </td></tr>\n",
+       "\t<tr><th scope=row>19</th><td>Page A</td><td>0.45  </td></tr>\n",
+       "\t<tr><th scope=row>21</th><td>Page A</td><td>1.18  </td></tr>\n",
+       "\t<tr><th scope=row>23</th><td>Page A</td><td>3.42  </td></tr>\n",
+       "\t<tr><th scope=row>25</th><td>Page A</td><td>1.97  </td></tr>\n",
+       "\t<tr><th scope=row>27</th><td>Page A</td><td>0.39  </td></tr>\n",
+       "\t<tr><th scope=row>29</th><td>Page A</td><td>0.65  </td></tr>\n",
+       "\t<tr><th scope=row>31</th><td>Page A</td><td>1.73  </td></tr>\n",
+       "\t<tr><th scope=row>32</th><td>Page A</td><td>0.74  </td></tr>\n",
+       "\t<tr><th scope=row>33</th><td>Page A</td><td>0.86  </td></tr>\n",
+       "\t<tr><th scope=row>34</th><td>Page A</td><td>1.18  </td></tr>\n",
+       "\t<tr><th scope=row>35</th><td>Page A</td><td>2.06  </td></tr>\n",
+       "\t<tr><th scope=row>36</th><td>Page A</td><td>0.93  </td></tr>\n",
+       "</tbody>\n",
+       "</table>\n"
+      ],
+      "text/latex": [
+       "\\begin{tabular}{r|ll}\n",
+       "  & Page & Time\\\\\n",
+       "\\hline\n",
+       "\t1 & Page A & 0.21  \\\\\n",
+       "\t3 & Page A & 0.35  \\\\\n",
+       "\t5 & Page A & 0.67  \\\\\n",
+       "\t7 & Page A & 2.11  \\\\\n",
+       "\t9 & Page A & 1.32  \\\\\n",
+       "\t11 & Page A & 0.68  \\\\\n",
+       "\t13 & Page A & 3.21  \\\\\n",
+       "\t15 & Page A & 1.47  \\\\\n",
+       "\t17 & Page A & 0.95  \\\\\n",
+       "\t19 & Page A & 0.45  \\\\\n",
+       "\t21 & Page A & 1.18  \\\\\n",
+       "\t23 & Page A & 3.42  \\\\\n",
+       "\t25 & Page A & 1.97  \\\\\n",
+       "\t27 & Page A & 0.39  \\\\\n",
+       "\t29 & Page A & 0.65  \\\\\n",
+       "\t31 & Page A & 1.73  \\\\\n",
+       "\t32 & Page A & 0.74  \\\\\n",
+       "\t33 & Page A & 0.86  \\\\\n",
+       "\t34 & Page A & 1.18  \\\\\n",
+       "\t35 & Page A & 2.06  \\\\\n",
+       "\t36 & Page A & 0.93  \\\\\n",
+       "\\end{tabular}\n"
+      ],
+      "text/markdown": [
+       "\n",
+       "| <!--/--> | Page | Time | \n",
+       "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n",
+       "| 1 | Page A | 0.21   | \n",
+       "| 3 | Page A | 0.35   | \n",
+       "| 5 | Page A | 0.67   | \n",
+       "| 7 | Page A | 2.11   | \n",
+       "| 9 | Page A | 1.32   | \n",
+       "| 11 | Page A | 0.68   | \n",
+       "| 13 | Page A | 3.21   | \n",
+       "| 15 | Page A | 1.47   | \n",
+       "| 17 | Page A | 0.95   | \n",
+       "| 19 | Page A | 0.45   | \n",
+       "| 21 | Page A | 1.18   | \n",
+       "| 23 | Page A | 3.42   | \n",
+       "| 25 | Page A | 1.97   | \n",
+       "| 27 | Page A | 0.39   | \n",
+       "| 29 | Page A | 0.65   | \n",
+       "| 31 | Page A | 1.73   | \n",
+       "| 32 | Page A | 0.74   | \n",
+       "| 33 | Page A | 0.86   | \n",
+       "| 34 | Page A | 1.18   | \n",
+       "| 35 | Page A | 2.06   | \n",
+       "| 36 | Page A | 0.93   | \n",
+       "\n",
+       "\n"
+      ],
+      "text/plain": [
+       "   Page   Time\n",
+       "1  Page A 0.21\n",
+       "3  Page A 0.35\n",
+       "5  Page A 0.67\n",
+       "7  Page A 2.11\n",
+       "9  Page A 1.32\n",
+       "11 Page A 0.68\n",
+       "13 Page A 3.21\n",
+       "15 Page A 1.47\n",
+       "17 Page A 0.95\n",
+       "19 Page A 0.45\n",
+       "21 Page A 1.18\n",
+       "23 Page A 3.42\n",
+       "25 Page A 1.97\n",
+       "27 Page A 0.39\n",
+       "29 Page A 0.65\n",
+       "31 Page A 1.73\n",
+       "32 Page A 0.74\n",
+       "33 Page A 0.86\n",
+       "34 Page A 1.18\n",
+       "35 Page A 2.06\n",
+       "36 Page A 0.93"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "(Page_A <- session_time[session_time$Page == \"Page A\",])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<table>\n",
+       "<thead><tr><th></th><th scope=col>Page</th><th scope=col>Time</th></tr></thead>\n",
+       "<tbody>\n",
+       "\t<tr><th scope=row>2</th><td>Page B</td><td>2.53  </td></tr>\n",
+       "\t<tr><th scope=row>4</th><td>Page B</td><td>0.71  </td></tr>\n",
+       "\t<tr><th scope=row>6</th><td>Page B</td><td>0.85  </td></tr>\n",
+       "\t<tr><th scope=row>8</th><td>Page B</td><td>2.46  </td></tr>\n",
+       "\t<tr><th scope=row>10</th><td>Page B</td><td>1.49  </td></tr>\n",
+       "\t<tr><th scope=row>12</th><td>Page B</td><td>0.75  </td></tr>\n",
+       "\t<tr><th scope=row>14</th><td>Page B</td><td>3.33  </td></tr>\n",
+       "\t<tr><th scope=row>16</th><td>Page B</td><td>1.87  </td></tr>\n",
+       "\t<tr><th scope=row>18</th><td>Page B</td><td>1.26  </td></tr>\n",
+       "\t<tr><th scope=row>20</th><td>Page B</td><td>0.48  </td></tr>\n",
+       "\t<tr><th scope=row>22</th><td>Page B</td><td>1.47  </td></tr>\n",
+       "\t<tr><th scope=row>24</th><td>Page B</td><td>3.57  </td></tr>\n",
+       "\t<tr><th scope=row>26</th><td>Page B</td><td>2.23  </td></tr>\n",
+       "\t<tr><th scope=row>28</th><td>Page B</td><td>0.43  </td></tr>\n",
+       "\t<tr><th scope=row>30</th><td>Page B</td><td>0.87  </td></tr>\n",
+       "</tbody>\n",
+       "</table>\n"
+      ],
+      "text/latex": [
+       "\\begin{tabular}{r|ll}\n",
+       "  & Page & Time\\\\\n",
+       "\\hline\n",
+       "\t2 & Page B & 2.53  \\\\\n",
+       "\t4 & Page B & 0.71  \\\\\n",
+       "\t6 & Page B & 0.85  \\\\\n",
+       "\t8 & Page B & 2.46  \\\\\n",
+       "\t10 & Page B & 1.49  \\\\\n",
+       "\t12 & Page B & 0.75  \\\\\n",
+       "\t14 & Page B & 3.33  \\\\\n",
+       "\t16 & Page B & 1.87  \\\\\n",
+       "\t18 & Page B & 1.26  \\\\\n",
+       "\t20 & Page B & 0.48  \\\\\n",
+       "\t22 & Page B & 1.47  \\\\\n",
+       "\t24 & Page B & 3.57  \\\\\n",
+       "\t26 & Page B & 2.23  \\\\\n",
+       "\t28 & Page B & 0.43  \\\\\n",
+       "\t30 & Page B & 0.87  \\\\\n",
+       "\\end{tabular}\n"
+      ],
+      "text/markdown": [
+       "\n",
+       "| <!--/--> | Page | Time | \n",
+       "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n",
+       "| 2 | Page B | 2.53   | \n",
+       "| 4 | Page B | 0.71   | \n",
+       "| 6 | Page B | 0.85   | \n",
+       "| 8 | Page B | 2.46   | \n",
+       "| 10 | Page B | 1.49   | \n",
+       "| 12 | Page B | 0.75   | \n",
+       "| 14 | Page B | 3.33   | \n",
+       "| 16 | Page B | 1.87   | \n",
+       "| 18 | Page B | 1.26   | \n",
+       "| 20 | Page B | 0.48   | \n",
+       "| 22 | Page B | 1.47   | \n",
+       "| 24 | Page B | 3.57   | \n",
+       "| 26 | Page B | 2.23   | \n",
+       "| 28 | Page B | 0.43   | \n",
+       "| 30 | Page B | 0.87   | \n",
+       "\n",
+       "\n"
+      ],
+      "text/plain": [
+       "   Page   Time\n",
+       "2  Page B 2.53\n",
+       "4  Page B 0.71\n",
+       "6  Page B 0.85\n",
+       "8  Page B 2.46\n",
+       "10 Page B 1.49\n",
+       "12 Page B 0.75\n",
+       "14 Page B 3.33\n",
+       "16 Page B 1.87\n",
+       "18 Page B 1.26\n",
+       "20 Page B 0.48\n",
+       "22 Page B 1.47\n",
+       "24 Page B 3.57\n",
+       "26 Page B 2.23\n",
+       "28 Page B 0.43\n",
+       "30 Page B 0.87"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "(Page_B <- session_time[session_time$Page == \"Page B\",])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "'sample size of A is 21'"
+      ],
+      "text/latex": [
+       "'sample size of A is 21'"
+      ],
+      "text/markdown": [
+       "'sample size of A is 21'"
+      ],
+      "text/plain": [
+       "[1] \"sample size of A is 21\""
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "'sample size of B is 15'"
+      ],
+      "text/latex": [
+       "'sample size of B is 15'"
+      ],
+      "text/markdown": [
+       "'sample size of B is 15'"
+      ],
+      "text/plain": [
+       "[1] \"sample size of B is 15\""
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "'The standard deviation of A is 0.88'"
+      ],
+      "text/latex": [
+       "'The standard deviation of A is 0.88'"
+      ],
+      "text/markdown": [
+       "'The standard deviation of A is 0.88'"
+      ],
+      "text/plain": [
+       "[1] \"The standard deviation of A is 0.88\""
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "'The standard deviation of B is 1.01'"
+      ],
+      "text/latex": [
+       "'The standard deviation of B is 1.01'"
+      ],
+      "text/markdown": [
+       "'The standard deviation of B is 1.01'"
+      ],
+      "text/plain": [
+       "[1] \"The standard deviation of B is 1.01\""
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "# assume the population varience is the same\n",
+    "# the pooling formula is (sp)2 = (N1 - 1)(s1)^2 + (N2 - 1)(s2)^2 / (N1 - 1) + (N2 - 1)\n",
+    "paste(\"sample size of A is\", sample_size_A <- length(Page_A$Page))\n",
+    "paste(\"sample size of B is\", sample_size_B <- length(Page_B$Page))\n",
+    "paste(\"The standard deviation of A is\", round(sd_A <- sd(Page_A$Time), 2))\n",
+    "paste(\"The standard deviation of B is\", round(sd_B <- sd(Page_B$Time), 2))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 88,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "0.94"
+      ],
+      "text/latex": [
+       "0.94"
+      ],
+      "text/markdown": [
+       "0.94"
+      ],
+      "text/plain": [
+       "[1] 0.94"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "# The pooled estimate of Page A and B is\n",
+    "(pooled <- round(sqrt((((sample_size_A - 1) * (sd_A**2)) + ((sample_size_B - 1) * (sd_B**2)))/ ((sample_size_A - 1) + (sample_size_B - 1))), 2))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# The T test for Two sample, assuming the population varience of the two sample are the same is\n",
+    "# t = (A_mean_sample - B_mean_sample) - (A_mean_population - B_mean_population) / pooled(sqrt(1/sample_size_A + 1/sample_size_B))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 60,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "'The sample mean of A is 1.26'"
+      ],
+      "text/latex": [
+       "'The sample mean of A is 1.26'"
+      ],
+      "text/markdown": [
+       "'The sample mean of A is 1.26'"
+      ],
+      "text/plain": [
+       "[1] \"The sample mean of A is 1.26\""
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "'The sample mean of B is 1.62'"
+      ],
+      "text/latex": [
+       "'The sample mean of B is 1.62'"
+      ],
+      "text/markdown": [
+       "'The sample mean of B is 1.62'"
+      ],
+      "text/plain": [
+       "[1] \"The sample mean of B is 1.62\""
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "paste(\"The sample mean of A is\", round(mean_A <- mean(Page_A$Time), 2))\n",
+    "paste(\"The sample mean of B is\", round(mean_B <- mean(Page_B$Time), 2))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 89,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "1.13"
+      ],
+      "text/latex": [
+       "1.13"
+      ],
+      "text/markdown": [
+       "1.13"
+      ],
+      "text/plain": [
+       "[1] 1.13"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "(t <- round((mean_B - mean_A) / (pooled * sqrt((1/sample_size_A) + (1/sample_size_B))), 2))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 80,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "2.03224450931772"
+      ],
+      "text/latex": [
+       "2.03224450931772"
+      ],
+      "text/markdown": [
+       "2.03224450931772"
+      ],
+      "text/plain": [
+       "[1] 2.032245"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "qt(0.025, df = 34, lower.tail = FALSE)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 90,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# since 1.13 is smaller than 2.03, we can't reject the null hypothesis"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 91,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "\n",
+       "\tTwo Sample t-test\n",
+       "\n",
+       "data:  Page_B$Time and Page_A$Time\n",
+       "t = 1.1237, df = 34, p-value = 0.269\n",
+       "alternative hypothesis: true difference in means is not equal to 0\n",
+       "95 percent confidence interval:\n",
+       " -0.2883731  1.0017064\n",
+       "sample estimates:\n",
+       "mean of x mean of y \n",
+       " 1.620000  1.263333 \n"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "# use t.test() to find the t value\n",
+    "t.test(Page_B$Time, Page_A$Time, var.equal = TRUE, alternative = \"two.sided\", mu=0)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 98,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "0.7744"
+      ],
+      "text/latex": [
+       "0.7744"
+      ],
+      "text/markdown": [
+       "0.7744"
+      ],
+      "text/plain": [
+       "[1] 0.7744"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "1.0201"
+      ],
+      "text/latex": [
+       "1.0201"
+      ],
+      "text/markdown": [
+       "1.0201"
+      ],
+      "text/plain": [
+       "[1] 1.0201"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "# we can use F-test to verify the equal varience assumption\n",
+    "(varience_A <- (sd_A) ** 2)\n",
+    "(varience_B <- (sd_B) ** 2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 100,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "1.31727789256198"
+      ],
+      "text/latex": [
+       "1.31727789256198"
+      ],
+      "text/markdown": [
+       "1.31727789256198"
+      ],
+      "text/plain": [
+       "[1] 1.317278"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "1.0201 / 0.7744"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 105,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "2.84369122275466"
+      ],
+      "text/latex": [
+       "2.84369122275466"
+      ],
+      "text/markdown": [
+       "2.84369122275466"
+      ],
+      "text/plain": [
+       "[1] 2.843691"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "qf(0.025, 20, 14, lower.tail = FALSE)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 106,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# since 1.31 is smaller tham 2.83, we can be safe to assume that the two sample varience are the same"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "R",
+   "language": "R",
+   "name": "ir"
+  },
+  "language_info": {
+   "codemirror_mode": "r",
+   "file_extension": ".r",
+   "mimetype": "text/x-r-source",
+   "name": "R",
+   "pygments_lexer": "r",
+   "version": "3.5.0"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
